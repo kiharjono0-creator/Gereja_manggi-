@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1f3a">
+<title>Gereja Toraja Mamasa Jemaat Manggi</title>
+
+<style>
+:root {
+  --navy: #0b1f3a;
+  --navy2: #12345b;
+  --gold: #d6a84f;
+  --gold2: #f3d18a;
+  --white: #ffffff;
+  --bg: #f4f6f8;
+  --text: #172033;
+  --muted: #687386;
+  --green: #16834b;
+  --red: #b83232;
+  --shadow: 0 5px 18px rgba(11,31,58,.10);
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: auto;
+  background: var(--bg);
+  padding-bottom: 78px;
+}
+
+.top-header {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  color: white;
+  padding: 22px 18px 20px;
+  border-radius: 0 0 24px 24px;
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: bold;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.brand p {
+  margin: 4px 0 0;
+  color: var(--gold2);
+  font-size: 12px;
+}
+
+main {
+  padding: 15px;
+}
+
+.page {
+  display: none;
+  animation: fade .2s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes fade {
+  from { opacity: .3; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 15px;
+  box-shadow: var(--shadow);
+}
+
+.card h2,
+.card h3 {
+  margin: 0 0 12px;
+  color: var(--navy);
+}
+
+.card h2 {
+  font-size: 20px;
+}
+
+.card h3 {
+  font-size: 16px;
+}
+
+.section-title {
+  color: var(--navy);
+  font-size: 20px;
+  margin: 4px 0 15px;
+}
+
+.gold-line {
+  width: 55px;
+  height: 4px;
+  border-radius: 5px;
+  background: var(--gold);
+  margin: -8px 0 16px;
+}
+
+.notice {
+  border-left: 5px solid var(--gold);
+  background: #fffaf0;
+  padding: 12px;
+  border-radius: 10px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.verse-text,
+.long-text {
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.verse-reference {
+  color: var(--gold);
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 13px;
+  min-height: 42px;
+  background: var(--navy);
+  color: white;
+  font-weight: bold;
+}
+
+.btn.gold {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.btn.light {
+  background: #e8edf3;
+  color: var(--navy);
+}
+
+.btn.danger {
+  background: var(--red);
+  color: white;
+}
+
+.btn.success {
+  background: var(--green);
+  color: white;
+}
+
+.btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.verse-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 15px;
+}
+
+.verse-nav .btn {
+  flex: 1;
+  padding: 9px 5px;
+  font-size: 12px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.gallery-item {
+  height: 120px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #dce3ea;
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-item span {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  background: rgba(0,0,0,.6);
+  color: white;
+  padding: 4px 7px;
+  border-radius: 5px;
+  font-size: 11px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.stat {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  border-radius: 13px;
+  padding: 17px 8px;
+}
+
+.stat strong {
+  display: block;
+  color: var(--gold2);
+  font-size: 23px;
+  margin-bottom: 4px;
+}
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+
+.quick-links a {
+  text-decoration: none;
+  text-align: center;
+  padding: 13px 5px;
+  border-radius: 11px;
+  background: #edf1f5;
+  color: var(--navy);
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.schedule-day {
+  border-left: 5px solid var(--gold);
+  padding: 11px 12px;
+  background: #fafafa;
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 10px;
+}
+
+.schedule-day h3 {
+  margin: 0 0 5px;
+  color: var(--navy);
+}
+
+.schedule-day p {
+  margin: 4px 0;
+  line-height: 1.45;
+}
+
+.structure-category {
+  margin-bottom: 13px;
+}
+
+.structure-category h3 {
+  color: var(--gold);
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}
+
+.person {
+  padding: 7px 0;
+  border-bottom: 1px solid #edf0f2;
+}
+
+.person:last-child {
+  border-bottom: 0;
+}
+
+.person b {
+  color: var(--navy);
+}
+
+.cash-summary {
+  display: grid;
+  gap: 9px;
+}
+
+.cash-box {
+  border-radius: 12px;
+  padding: 14px;
+  color: white;
+}
+
+.cash-box strong {
+  display: block;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.cash-in {
+  background: var(--green);
+}
+
+.cash-out {
+  background: var(--red);
+}
+
+.cash-balance {
+  background: var(--navy);
+}
+
+.transaction {
+  position: relative;
+  border-left: 4px solid var(--gold);
+  padding: 2px 0 8px 13px;
+  margin: 0 0 15px 4px;
+}
+
+.transaction h4 {
+  margin: 0 0 4px;
+  color: var(--navy);
+}
+
+.transaction p {
+  margin: 3px 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.transaction .amount {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.amount.in {
+  color: var(--green);
+}
+
+.amount.out {
+  color: var(--red);
+}
+
+.bottom-nav {
+  position: fixed;
+  z-index: 20;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: white;
+  border-top: 1px solid #dfe4ea;
+  box-shadow: 0 -4px 16px rgba(0,0,0,.08);
+}
+
+.nav-btn {
+  border: 0;
+  background: white;
+  color: var(--muted);
+  padding: 9px 2px 8px;
+  font-size: 10px;
+}
+
+.nav-btn span {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.nav-btn.active {
+  color: var(--navy);
+  font-weight: bold;
+  border-top: 3px solid var(--gold);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid #d5dce4;
+  border-radius: 9px;
+  padding: 11px;
+  background: white;
+  color: var(--text);
+  margin: 5px 0 11px;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+label {
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.form-grid > div {
+  min-width: 0;
+}
+
+.admin-section {
+  border: 1px solid #dce3ea;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: white;
+}
+
+.admin-section summary {
+  cursor: pointer;
+  padding: 14px;
+  font-weight: bold;
+  color: var(--navy);
+  background: #f8fafc;
+}
+
+.admin-content {
+  padding: 13px;
+}
+
+.admin-content h4 {
+  color: var(--gold);
+  margin: 13px 0 6px;
+}
+
+.cash-admin-row {
+  border: 1px solid #e1e6eb;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 9px;
+}
+
+.cash-admin-row small {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  background: rgba(0,0,0,.72);
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 410px;
+  background: white;
+  border-radius: 15px;
+  padding: 15px;
+  position: relative;
+}
+
+.modal-box img {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  border: 0;
+  background: var(--red);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 19px;
+}
+
+.toast {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  bottom: 88px;
+  transform: translateX(-50%);
+  width: calc(100% - 30px);
+  max-width: 400px;
+  padding: 13px;
+  border-radius: 10px;
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.toast.show {
+  display: block;
+}
+
+.login-box {
+  text-align: center;
+  padding: 20px 5px;
+}
+
+.login-icon {
+  font-size: 50px;
+  margin-bottom: 7px;
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.copy-box {
+  background: #f2f5f8;
+  border-radius: 8px;
+  padding: 10px;
+  word-break: break-all;
+  font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header class="top-header">
+  <div class="brand">
+    <div class="logo">GTM</div>
+    <div>
+      <h1 id="brandName">Gereja Toraja Mamasa<br>Jemaat Manggi</h1>
+      <p id="brandSlogan">Bersatu Dalam Kasih Kristus</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="page active">
+  <h2 class="section-title">Selamat Datang</h2>
+  <div class="gold-line"></div>
+
+  <div class="card">
+    <h3>📢 Info Minggu Ini</h3>
+    <div id="weeklyInfo" class="notice"></div>
+  </div>
+
+  <div class="card">
+    <h3>📖 Firman Hari Ini</h3>
+    <div id="verseTitle" class="verse-reference"></div>
+    <div id="verseText" class="verse-text"></div>
+    <div class="verse-nav">
+      <button class="btn light" onclick="previousVerse()">◀ Sebelumnya</button>
+      <button class="btn gold" onclick="randomVerse()">Ganti Ayat</button>
+      <button class="btn light" onclick="nextVerse()">Berikutnya ▶</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>👋 Sambutan</h3>
+    <div id="welcomeText" class="long-text"></div>
+  </div>
+
+  <div class="card">
+    <h3>📷 Galeri Foto</h3>
+    <div id="gallery" class="gallery"></div>
+  </div>
+
+  <div class="card">
+    <h3>👥 Informasi Jemaat</h3>
+    <div class="stats">
+      <div class="stat"><strong id="familyCount">120</strong>KK</div>
+      <div class="stat"><strong id="memberCount">450</strong>Jiwa</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📞 Kontak Cepat</h3>
+    <div id="quickLinks" class="quick-links"></div>
+  </div>
+</section>
+
+<!-- PROFIL -->
+<section id="profil" class="page">
+  <h2 class="section-title">⛪ Profil Jemaat</h2>
+  <div class="gold-line"></div>
+
+  <div class="card">
+    <h3>Sejarah Gereja</h3>
+    <div id="historyText" class="long-text"></div>
+  </div>
+
+  <div class="card">
+    <h3>Struktur Gereja</h3>
+    <div id="structureList"></div>
+  </div>
+</section>
+
+<!-- JADWAL -->
+<section id="jadwal" class="page">
+  <h2 class="section-title">📅 Jadwal Kegiatan</h2>
+  <div class="gold-line"></div>
+  <div class="card" id="scheduleList"></div>
+</section>
+
+<!-- KAS -->
+<section id="kas" class="page">
+  <h2 class="section-title">💰 Kas Jemaat</h2>
+  <div class="gold-line"></div>
+
+  <div class="card">
+    <div class="cash-summary">
+      <div class="cash-box cash-in">
+        💰 Uang Masuk
+        <strong id="totalIn">Rp 0</strong>
+      </div>
+      <div class="cash-box cash-out">
+        💸 Uang Keluar
+        <strong id="totalOut">Rp 0</strong>
+      </div>
+      <div class="cash-box cash-balance">
+        💵 Sisa Kas
+        <strong id="balance">Rp 0</strong>
+      </div>
+    </div>
+    <br>
+    <button class="btn gold" onclick="printReport()">📄 Unduh PDF</button>
+    <p class="small">Pada jendela cetak Chrome, pilih opsi “Simpan sebagai PDF”.</p>
+  </div>
+
+  <div class="card">
+    <h3>Riwayat Kas</h3>
+    <div id="transactionList"></div>
+    <div class="pagination">
+      <button id="prevCash" class="btn light" onclick="cashPage--,renderCash()">◀ Sebelumnya</button>
+      <button id="nextCash" class="btn light" onclick="cashPage++,renderCash()">Selanjutnya ▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN -->
+<section id="admin" class="page">
+  <h2 class="section-title">🔐 Admin</h2>
+  <div class="gold-line"></div>
+
+  <div id="loginPanel" class="card login-box">
+    <div class="login-icon">🔒</div>
+    <h3>Login Admin</h3>
+    <p class="small">Masukkan password untuk mengubah isi website.</p>
+    <input id="adminPassword" type="password" placeholder="Password admin">
+    <button class="btn gold" onclick="loginAdmin()">MASUK</button>
+  </div>
+
+  <div id="adminPanel" style="display:none">
+    <div class="card">
+      <button class="btn light" onclick="logoutAdmin()">Keluar dari Admin</button>
+    </div>
+
+    <details class="admin-section" open>
+      <summary>IDENTITAS WEBSITE</summary>
+      <div class="admin-content">
+        <label>Nama Gereja</label>
+        <input id="editName">
+        <label>Slogan</label>
+        <input id="editSlogan">
+        <label>Alamat</label>
+        <input id="editAddress">
+      </div>
+    </details>
+
+    <details class="admin-section">
+      <summary>HOME</summary>
+      <div class="admin-content">
+        <label>Info Minggu Ini</label>
+        <textarea id="editWeekly"></textarea>
+
+        <label>Sambutan</label>
+        <textarea id="editWelcome"></textarea>
+
+        <h4>31 Ayat Firman</h4>
+        <p class="small">Satu ayat per baris dengan format: Judul | Referensi | Isi ayat</p>
+        <textarea id="editVerses" style="min-height:250px"></textarea>
+
+        <h4>6 Foto</h4>
+        <p class="small">Satu foto per baris dengan format: URL Foto | Judul | Link Opsional</p>
+        <textarea id="editGallery" style="min-height:160px"></textarea>
+      </div>
+    </details>
+
+    <details class="admin-section">
+      <summary>PROFIL DAN STRUKTUR</summary>
+      <div class="admin-content">
+        <label>Sejarah Gereja</label>
+        <textarea id="editHistory"></textarea>
+
+        <label>Struktur Pengurus</label>
+        <p class="small">Format JSON. Contoh dapat diubah sesuai kebutuhan.</p>
+        <textarea id="editStructure" style="min-height:220px"></textarea>
+      </div>
+    </details>
+
+    <details class="admin-section">
+      <summary>INFORMASI JEMAAT</summary>
+      <div class="admin-content">
+        <label>Jumlah KK</label>
+        <input id="editKK" type="number">
+        <label>Jumlah Jiwa</label>
+        <input id="editPeople" type="number">
+      </div>
+    </details>
+
+    <details class="admin-section">
+      <summary>JADWAL KEGIATAN</summary>
+      <div class="admin-content">
+        <p class="small">Format setiap baris: Nama Kegiatan | Jam | Lokasi | Keterangan</p>
+        <label>Minggu</label>
+        <input id="editSunday">
+        <label>Rabu</label>
+        <input id="editWednesday">
+        <label>Kamis</label>
+        <input id="editThursday">
+        <label>Sabtu</label>
+        <input id="editSaturday">
+      </div>
+    </details>
+
+    <details class="admin-section">
+      <summary>KONTAK CEPAT</summary>
+      <div class="admin-content">
+        <label>WhatsApp</label>
+        <input id="editWhatsapp" placeholder="Contoh: 628123456789">
+        <label>Facebook</label>
+        <input id="editFacebook" placeholder="URL Facebook">
+        <label>Rekening BRI</label>
+        <input id="editBank" placeholder="Nomor rekening atau keterangan">
+        <label>Google Maps</label>
+        <input id="editMaps" placeholder="URL Google Maps">
+      </div>
+    </details>
+
+    <details class="admin-section">
+      <summary>KELOLA KAS</summary>
+      <div class="admin-content">
+        <h4>Tambah Transaksi</h4>
+        <label>Jenis Transaksi</label>
+        <select id="cashType">
+          <option value="in">Pemasukan</option>
+          <option value="out">Pengeluaran</option>
+        </select>
+        <label>Tanggal</label>
+        <input id="cashDate" type="date">
+        <label>Nama</label>
+        <input id="cashName" placeholder="Nama transaksi">
+        <label>Keterangan</label>
+        <input id="cashNote" placeholder="Keterangan">
+        <label>Nominal</label>
+        <input id="cashAmount" type="number" min="0" placeholder="Nominal">
+        <button class="btn success" onclick="addTransaction()">Tambah Transaksi</button>
+
+        <h4>Daftar Transaksi</h4>
+        <div id="adminTransactions"></div>
+      </div>
+    </details>
+
+    <div class="card">
+      <button class="btn gold" onclick="saveAdminData()">💾 SIMPAN SEMUA PERUBAHAN</button>
+      <br><br>
+      <button class="btn" onclick="shareWebsite()">🔗 BAGIKAN LINK</button>
+      <br><br>
+      <button class="btn light" onclick="backupData()">💾 BACKUP JSON</button>
+      <br><br>
+      <button class="btn light" onclick="document.getElementById('restoreFile').click()">♻️ RESTORE JSON</button>
+      <input id="restoreFile" type="file" accept=".json,application/json" style="display:none" onchange="restoreData(event)">
+      <br><br>
+      <button class="btn danger" onclick="deleteAllData()">🗑️ HAPUS SEMUA</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-page="home" onclick="showPage('home',this)">
+    <span>🏠</span>HOME
+  </button>
+  <button class="nav-btn" data-page="profil" onclick="showPage('profil',this)">
+    <span>⛪</span>PROFIL
+  </button>
+  <button class="nav-btn" data-page="jadwal" onclick="showPage('jadwal',this)">
+    <span>📅</span>JADWAL
+  </button>
+  <button class="nav-btn" data-page="kas" onclick="showPage('kas',this)">
+    <span>💰</span>KAS
+  </button>
+  <button class="nav-btn" data-page="admin" onclick="showPage('admin',this)">
+    <span>🔐</span>ADMIN
+  </button>
+</nav>
+</div>
+
+<div id="imageModal" class="modal" onclick="closeImage()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="close" onclick="closeImage()">×</button>
+    <img id="largeImage" src="" alt="Foto galeri">
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const STORAGE_KEY = "gtm_jemaat_manggi_data_v1";
+const ADMIN_PASSWORD = "910502";
+const DELETE_PASSWORD = "HAPUS SEMUA";
+
+let verseIndex = 0;
+let cashPage = 0;
+let adminLoggedIn = false;
+const PER_PAGE = 4;
+
+const defaultData = {
+  identity: {
+    name: "Gereja Toraja Mamasa Jemaat Manggi",
+    slogan: "Bersatu Dalam Kasih Kristus",
+    address: "Dusun Manggi, Mamasa, Sulawesi Barat"
+  },
+  home: {
+    weekly: "Kebaktian Minggu pukul 09.00 WITA di gedung gereja.",
+    welcome: "Selamat Datang di Website Gereja Toraja Mamasa Jemaat Manggi. Kiranya website ini menjadi sarana informasi dan persekutuan bagi seluruh jemaat.",
+    verses: [
+      ["Kasih Allah", "Yohanes 3:16", "Karena begitu besar kasih Allah akan dunia ini, sehingga Ia telah mengaruniakan Anak-Nya yang tunggal, supaya setiap orang yang percaya kepada-Nya tidak binasa, melainkan beroleh hidup yang kekal."],
+      ["Kekuatan Dalam Tuhan", "Filipi 4:13", "Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku."],
+      ["Tuhan Gembalaku", "Mazmur 23:1", "TUHAN adalah gembalaku, takkan kekurangan aku."],
+      ["Jangan Takut", "Yesaya 41:10", "Janganlah takut, sebab Aku menyertai engkau, janganlah bimbang, sebab Aku ini Allahmu."],
+      ["Rencana Tuhan", "Yeremia 29:11", "Sebab Aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu, demikianlah firman TUHAN."],
+      ["Hidup Dalam Kasih", "1 Korintus 16:14", "Lakukanlah segala pekerjaanmu dalam kasih!"],
+      ["Percaya Kepada Tuhan", "Amsal 3:5", "Percayalah kepada TUHAN dengan segenap hatimu, dan janganlah bersandar kepada pengertianmu sendiri."],
+      ["Doa", "Yeremia 33:3", "Berserulah kepada-Ku, maka Aku akan menjawab engkau dan akan memberitahukan kepadamu hal-hal yang besar."],
+      ["Sukacita", "Filipi 4:4", "Bersukacitalah senantiasa dalam Tuhan! Sekali lagi kukatakan: Bersukacitalah!"],
+      ["Damai Sejahtera", "Yohanes 14:27", "Damai sejahtera Kutinggalkan bagimu. Damai sejahtera-Ku Kuberikan kepadamu."],
+      ["Iman", "Ibrani 11:1", "Iman adalah dasar dari segala sesuatu yang kita harapkan dan bukti dari segala sesuatu yang tidak kita lihat."],
+      ["Pengharapan", "Roma 15:13", "Semoga Allah, sumber pengharapan, memenuhi kamu dengan segala sukacita dan damai sejahtera."],
+      ["Kasih", "1 Korintus 13:13", "Demikianlah tinggal ketiga hal ini, yaitu iman, pengharapan dan kasih, dan yang paling besar di antaranya ialah kasih."],
+      ["Melayani", "Markus 10:45", "Karena Anak Manusia juga datang bukan untuk dilayani, melainkan untuk melayani."],
+      ["Bersyukur", "1 Tesalonika 5:18", "Mengucap syukurlah dalam segala hal."],
+      ["Terang Dunia", "Matius 5:14", "Kamu adalah terang dunia."],
+      ["Garam Dunia", "Matius 5:13", "Kamu adalah garam dunia."],
+      ["Kesetiaan", "Ratapan 3:23", "Selalu baru tiap pagi; besar kesetiaan-Mu!"],
+      ["Kebaikan", "Galatia 6:9", "Janganlah kita jemu-jemu berbuat baik."],
+      ["Pengampunan", "Efesus 4:32", "Hendaklah kamu saling mengampuni, sebagaimana Allah di dalam Kristus telah mengampuni kamu."],
+      ["Kerendahan Hati", "Filipi 2:3", "Dengan rendah hati yang seorang menganggap yang lain lebih utama dari pada dirinya sendiri."],
+      ["Kesatuan", "Mazmur 133:1", "Sungguh, alangkah baiknya dan indahnya, apabila saudara-saudara diam bersama dengan rukun!"],
+      ["Kebenaran", "Yohanes 8:32", "Kamu akan mengetahui kebenaran, dan kebenaran itu akan memerdekakan kamu."],
+      ["Kehidupan", "Yohanes 11:25", "Akulah kebangkitan dan hidup; barangsiapa percaya kepada-Ku, ia akan hidup."],
+      ["Jalan Tuhan", "Amsal 16:9", "Hati manusia memikir-mikirkan jalannya, tetapi Tuhanlah yang menentukan arah langkahnya."],
+      ["Keadilan", "Mikha 6:8", "Yang dituntut Tuhan daripadamu ialah berlaku adil, mencintai kesetiaan, dan hidup dengan rendah hati."],
+      ["Perlindungan", "Mazmur 121:2", "Pertolonganku ialah dari Tuhan, yang menjadikan langit dan bumi."],
+      ["Kesabaran", "Roma 12:12", "Bersukacitalah dalam pengharapan, sabarlah dalam kesesakan, dan bertekunlah dalam doa."],
+      ["Masa Depan", "Mazmur 37:5", "Serahkanlah hidupmu kepada Tuhan dan percayalah kepada-Nya."],
+      ["Berkat", "Bilangan 6:24", "Tuhan memberkati engkau dan melindungi engkau."],
+      ["Aman Dalam Tuhan", "Mazmur 46:2", "Allah itu bagi kita tempat perlindungan dan kekuatan."]
+    ],
+    gallery: [
+      ["https://images.unsplash.com/photo-1438032005730-c779502df39b?w=700", "Gereja", ""],
+      ["https://images.unsplash.com/photo-1507692049790-de58290a4334?w=700", "Persekutuan", ""],
+      ["https://images.unsplash.com/photo-1478147427282-58a87a120781?w=700", "Ibadah", ""],
+      ["https://images.unsplash.com/photo-1519491050282-cf00c82424b4?w=700", "Kebersamaan", ""],
+      ["https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=700", "Pelayanan", ""],
+      ["https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700", "Jemaat", ""]
+    ]
+  },
+  profile: {
+    history: "Gereja Toraja Mamasa Jemaat Manggi merupakan bagian dari persekutuan umat percaya yang hadir untuk melayani Tuhan dan masyarakat di Dusun Manggi, Mamasa, Sulawesi Barat.",
+    structure: [
+      { category: "Pelayan Firman", people: [{ role: "Pendeta", name: "Nama Pendeta" }] },
+      { category: "Majelis Jemaat", people: [
+        { role: "Ketua", name: "Nama Ketua" },
+        { role: "Sekretaris", name: "Nama Sekretaris" },
+        { role: "Bendahara", name: "Nama Bendahara" }
+      ]},
+      { category: "Pengurus Lainnya", people: [
+        { role: "Ketua Pemuda", name: "Nama Pengurus" },
+        { role: "Ketua Kaum Ibu", name: "Nama Pengurus" }
+      ]}
+    ]
+  },
+  members: { kk: 120, people: 450 },
+  schedules: {
+    Minggu: ["Kebaktian Umum", "09.00 WITA", "Gedung Gereja", "Ibadah bersama jemaat"],
+    Rabu: ["Ibadah Rumah Tangga", "19.00 WITA", "Sesuai jadwal", "Persekutuan rumah tangga"],
+    Kamis: ["Doa Bersama", "19.00 WITA", "Gedung Gereja", "Doa dan pembinaan iman"],
+    Sabtu: ["Persiapan Ibadah", "16.00 WITA", "Gedung Gereja", "Persiapan pelayanan Minggu"]
+  },
+  contacts: {
+    whatsapp: "628123456789",
+    facebook: "https://facebook.com/",
+    bank: "BRI - Nomor rekening dapat diubah Admin",
+    maps: "https://maps.google.com/"
+  },
+  transactions: []
+};
+
+let data = loadData();
+
+function clone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+function loadData() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return Object.assign(clone(defaultData), JSON.parse(saved));
+  } catch (e) {}
+  return clone(defaultData);
+}
+
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2600);
+}
+
+function rupiah(value) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0
+  }).format(Number(value) || 0);
+}
+
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+  }[char]));
+}
+
+function showPage(pageId, button) {
+  document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
+  document.getElementById(pageId).classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("active"));
+  if (button) button.classList.add("active");
+
+  window.scrollTo(0, 0);
+  if (pageId === "kas") renderCash();
+  if (pageId === "admin" && adminLoggedIn) renderAdminTransactions();
+}
+
+function renderAll() {
+  document.getElementById("brandName").innerHTML =
+    esc(data.identity.name).replace(/\n/g, "<br>");
+  document.getElementById("brandSlogan").textContent = data.identity.slogan;
+  document.getElementById("weeklyInfo").innerHTML =
+    data.home.weekly ? esc(data.home.weekly) : '<span class="empty">Belum ada informasi minggu ini.</span>';
+  document.getElementById("welcomeText").textContent = data.home.welcome;
+  document.getElementById("familyCount").textContent = data.members.kk;
+  document.getElementById("memberCount").textContent = data.members.people;
+
+  renderVerse();
+  renderGallery();
+  renderContacts();
+  renderProfile();
+  renderSchedules();
+  renderCash();
+}
+
+function renderVerse() {
+  if (!data.home.verses.length) {
+    document.getElementById("verseTitle").textContent = "Belum ada ayat";
+    document.getElementById("verseText").textContent = "";
+    return;
+  }
+
+  if (verseIndex >= data.home.verses.length) verseIndex = 0;
+  const verse = data.home.verses[verseIndex];
+
+  document.getElementById("verseTitle").textContent =
+    `${verse[0]} — ${verse[1]}`;
+  document.getElementById("verseText").textContent = verse[2];
+}
+
+function previousVerse() {
+  if (!data.home.verses.length) return;
+  verseIndex = (verseIndex - 1 + data.home.verses.length) % data.home.verses.length;
+  renderVerse();
+}
+
+function nextVerse() {
+  if (!data.home.verses.length) return;
+  verseIndex = (verseIndex + 1) % data.home.verses.length;
+  renderVerse();
+}
+
+function randomVerse() {
+  if (!data.home.verses.length) return;
+  verseIndex = Math.floor(Math.random() * data.home.verses.length);
+  renderVerse();
+}
+
+function renderGallery() {
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+
+  data.home.gallery.forEach((photo, index) => {
+    const item = document.createElement("div");
+    item.className = "gallery-item";
+    item.onclick = () => openImage(photo[0]);
+
+    item.innerHTML = `
+      <img src="${esc(photo[0])}" alt="${esc(photo[1])}"
+           onerror="this.src='data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
+             '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"500\" height=\"300\"><rect width=\"100%\" height=\"100%\" fill=\"#dce3ea\"/><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" fill=\"#0b1f3a\">Foto '+(index+1)+'</text></svg>'
+           )}'">
+      <span>${esc(photo[1] || "Foto " + (index + 1))}</span>
+    `;
+
+    gallery.appendChild(item);
+  });
+}
+
+function openImage(url) {
+  document.getElementById("largeImage").src = url;
+  document.getElementById("imageModal").classList.add("show");
+}
+
+function closeImage() {
+  document.getElementById("imageModal").classList.remove("show");
+}
+
+function renderContacts() {
+  const c = data.contacts;
+  document.getElementById("quickLinks").innerHTML = `
+    <a href="https://wa.me/${esc(c.whatsapp)}" target="_blank">📱 WhatsApp</a>
+    <a href="${esc(c.facebook)}" target="_blank">📘 Facebook</a>
+    <a href="#" onclick="copyText('${esc(c.bank)}');return false;">🏦 Rekening BRI</a>
+    <a href="${esc(c.maps)}" target="_blank">📍 Maps</a>
+  `;
+}
+
+function copyText(text) {
+  navigator.clipboard?.writeText(text);
+  showToast("Informasi rekening disalin");
+}
+
+function renderProfile() {
+  document.getElementById("historyText").textContent = data.profile.history;
+  const container = document.getElementById("structureList");
+  container.innerHTML = "";
+
+  data.profile.structure.forEach(group => {
+    const box = document.createElement("div");
+    box.className = "structure-category";
+    box.innerHTML = `<h3>${esc(group.category)}</h3>`;
+
+    (group.people || []).forEach(person => {
+      box.innerHTML += `<div class="person"><b>${esc(person.role)}</b><br>${esc(person.name)}</div>`;
+    });
+
+    container.appendChild(box);
+  });
+}
+
+function renderSchedules() {
+  const container = document.getElementById("scheduleList");
+  container.innerHTML = "";
+
+  Object.entries(data.schedules).forEach(([day, item]) => {
+    container.innerHTML += `
+      <div class="schedule-day">
+        <h3>${esc(day)}</h3>
+        <p><b>${esc(item[0] || "")}</b></p>
+        <p>🕒 ${esc(item[1] || "")}</p>
+        <p>📍 ${esc(item[2] || "")}</p>
+        <p>${esc(item[3] || "")}</p>
+      </div>
+    `;
+  });
+}
+
+function calculateCash() {
+  let incoming = 0;
+  let outgoing = 0;
+
+  data.transactions.forEach(t => {
+    if (t.type === "in") incoming += Number(t.amount) || 0;
+    else outgoing += Number(t.amount) || 0;
+  });
+
+  return { incoming, outgoing, balance: incoming - outgoing };
+}
+
+function renderCash() {
+  const totals = calculateCash();
+  document.getElementById("totalIn").textContent = rupiah(totals.incoming);
+  document.getElementById("totalOut").textContent = rupiah(totals.outgoing);
+  document.getElementById("balance").textContent = rupiah(totals.balance);
+
+  const list = document.getElementById("transactionList");
+  const start = cashPage * PER_PAGE;
+  const transactions = data.transactions.slice().reverse();
+  const shown = transactions.slice(start, start + PER_PAGE);
+
+  if (!shown.length) {
+    list.innerHTML = '<p class="empty">Belum ada transaksi kas.</p>';
+  } else {
+    list.innerHTML = shown.map(t => `
+      <div class="transaction">
+        <h4>${esc(t.name)}</h4>
+        <p>${esc(t.date)} · ${esc(t.note)}</p>
+        <div class="amount ${t.type === "in" ? "in" : "out"}">
+          ${t.type === "in" ? "+" : "-"} ${rupiah(t.amount)}
+        </div>
+      </div>
+    `).join("");
+  }
+
+  document.getElementById("prevCash").disabled = cashPage === 0;
+  document.getElementById("nextCash").disabled = start + PER_PAGE >= transactions.length;
+}
+
+function loginAdmin() {
+  const password = document.getElementById("adminPassword").value;
+
+  if (password === ADMIN_PASSWORD) {
+    adminLoggedIn = true;
+    document.getElementById("loginPanel").style.display = "none";
+    document.getElementById("adminPanel").style.display = "block";
+    document.getElementById("adminPassword").value = "";
+    fillAdminForm();
+    showToast("Login Admin berhasil");
+  } else {
+    showToast("Password admin salah");
+  }
+}
+
+function logoutAdmin() {
+  adminLoggedIn = false;
+  document.getElementById("loginPanel").style.display = "block";
+  document.getElementById("adminPanel").style.display = "none";
+  showToast("Anda telah keluar dari Admin");
+}
+
+function fillAdminForm() {
+  document.getElementById("editName").value = data.identity.name;
+  document.getElementById("editSlogan").value = data.identity.slogan;
+  document.getElementById("editAddress").value = data.identity.address;
+  document.getElementById("editWeekly").value = data.home.weekly;
+  document.getElementById("editWelcome").value = data.home.welcome;
+
+  document.getElementById("editVerses").value = data.home.verses
+    .map(v => v.join(" | ")).join("\n");
+
+  document.getElementById("editGallery").value = data.home.gallery
+    .map(v => v.join(" | ")).join("\n");
+
+  document.getElementById("editHistory").value = data.profile.history;
+  document.getElementById("editStructure").value =
+    JSON.stringify(data.profile.structure, null, 2);
+
+  document.getElementById("editKK").value = data.members.kk;
+  document.getElementById("editPeople").value = data.members.people;
+
+  document.getElementById("editSunday").value = data.schedules.Minggu.join(" | ");
+  document.getElementById("editWednesday").value = data.schedules.Rabu.join(" | ");
+  document.getElementById("editThursday").value = data.schedules.Kamis.join(" | ");
+  document.getElementById("editSaturday").value = data.schedules.Sabtu.join(" | ");
+
+  document.getElementById("editWhatsapp").value = data.contacts.whatsapp;
+  document.getElementById("editFacebook").value = data.contacts.facebook;
+  document.getElementById("editBank").value = data.contacts.bank;
+  document.getElementById("editMaps").value = data.contacts.maps;
+
+  renderAdminTransactions();
+}
+
+function splitLines(text, minimum) {
+  return text.split("\n")
+    .map(line => line.split("|").map(x => x.trim()))
+    .filter(row => row.length >= minimum && row.some(x => x));
+}
+
+function saveAdminData() {
+  try {
+    data.identity.name = document.getElementById("editName").value.trim();
+    data.identity.slogan = document.getElementById("editSlogan").value.trim();
+    data.identity.address = document.getElementById("editAddress").value.trim();
+
+    data.home.weekly = document.getElementById("editWeekly").value.trim();
+    data.home.welcome = document.getElementById("editWelcome").value.trim();
+
+    const verses = splitLines(document.getElementById("editVerses").value, 3);
+    data.home.verses = verses.map(row => [row[0], row[1], row.slice(2).join(" | ")]);
+
+    const gallery = splitLines(document.getElementById("editGallery").value, 1);
+    data.home.gallery = gallery.slice(0, 6).map(row => [
+      row[0] || "",
+      row[1] || "Foto",
+      row[2] || ""
+    ]);
+
+    data.profile.history = document.getElementById("editHistory").value.trim();
+    data.profile.structure = JSON.parse(document.getElementById("editStructure").value);
+
+    data.members.kk = Number(document.getElementById("editKK").value) || 0;
+    data.members.people = Number(document.getElementById("editPeople").value) || 0;
+
+    data.schedules.Minggu = splitLines(document.getElementById("editSunday").value, 1)[0] || [];
+    data.schedules.Rabu = splitLines(document.getElementById("editWednesday").value, 1)[0] || [];
+    data.schedules.Kamis = splitLines(document.getElementById("editThursday").value, 1)[0] || [];
+    data.schedules.Sabtu = splitLines(document.getElementById("editSaturday").value, 1)[0] || [];
+
+    data.contacts.whatsapp = document.getElementById("editWhatsapp").value.trim();
+    data.contacts.facebook = document.getElementById("editFacebook").value.trim();
+    data.contacts.bank = document.getElementById("editBank").value.trim();
+    data.contacts.maps = document.getElementById("editMaps").value.trim();
+
+    saveData();
+    renderAll();
+    showToast("Semua perubahan berhasil disimpan");
+  } catch (error) {
+    showToast("Gagal menyimpan. Periksa format JSON struktur.");
+  }
+}
+
+function addTransaction() {
+  const amount = Number(document.getElementById("cashAmount").value);
+
+  if (!amount || amount < 0) {
+    showToast("Masukkan nominal transaksi");
+    return;
+  }
+
+  data.transactions.push({
+    id: Date.now(),
+    type: document.getElementById("cashType").value,
+    date: document.getElementById("cashDate").value ||
+      new Date().toISOString().slice(0, 10),
+    name: document.getElementById("cashName").value.trim() || "Tanpa nama",
+    note: document.getElementById("cashNote").value.trim() || "-",
+    amount
+  });
+
+  saveData();
+  document.getElementById("cashName").value = "";
+  document.getElementById("cashNote").value = "";
+  document.getElementById("cashAmount").value = "";
+  cashPage = 0;
+  renderAll();
+  renderAdminTransactions();
+  showToast("Transaksi berhasil ditambahkan");
+}
+
+function renderAdminTransactions() {
+  const box = document.getElementById("adminTransactions");
+  if (!box) return;
+
+  if (!data.transactions.length) {
+    box.innerHTML = '<p class="empty">Belum ada transaksi.</p>';
+    return;
+  }
+
+  box.innerHTML = data.transactions.slice().reverse().map(t => `
+    <div class="cash-admin-row">
+      <small>${esc(t.date)} · ${t.type === "in" ? "PEMASUKAN" : "PENGELUARAN"}</small>
+      <b>${esc(t.name)}</b><br>
+      <span>${esc(t.note)} — ${rupiah(t.amount)}</span>
+      <br><br>
+      <button class="btn light" onclick="editTransaction(${t.id})">Edit</button>
+      <button class="btn danger" onclick="deleteTransaction(${t.id})">Hapus</button>
+    </div>
+  `).join("");
+}
+
+function editTransaction(id) {
+  const t = data.transactions.find(item => item.id === id);
+  if (!t) return;
+
+  const type = prompt("Jenis: in untuk pemasukan atau out untuk pengeluaran", t.type);
+  if (type !== "in" && type !== "out") return;
+
+  const date = prompt("Tanggal YYYY-MM-DD", t.date);
+  const name = prompt("Nama transaksi", t.name);
+  const note = prompt("Keterangan", t.note);
+  const amount = Number(prompt("Nominal", t.amount));
+
+  if (!date || !name || !Number.isFinite(amount)) {
+    showToast("Perubahan dibatalkan");
+    return;
+  }
+
+  Object.assign(t, { type, date, name, note, amount });
+  saveData();
+  renderAll();
+  renderAdminTransactions();
+  showToast("Transaksi berhasil diubah");
+}
+
+function deleteTransaction(id) {
+  if (!confirm("Hapus transaksi ini?")) return;
+  data.transactions = data.transactions.filter(t => t.id !== id);
+  saveData();
+  renderAll();
+  renderAdminTransactions();
+  showToast("Transaksi berhasil dihapus");
+}
+
+function backupData() {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {
+    type: "application/json"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "backup-gtm-jemaat-manggi.json";
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("Backup berhasil dibuat");
+}
+
+function restoreData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    try {
+      const restored = JSON.parse(e.target.result);
+
+      if (!restored.identity || !restored.home || !restored.transactions) {
+        throw new Error("Format tidak sesuai");
+      }
+
+      data = restored;
+      saveData();
+      renderAll();
+      fillAdminForm();
+      showToast("Data berhasil dipulihkan");
+    } catch (error) {
+      showToast("File backup tidak valid");
+    }
+  };
+
+  reader.readAsText(file);
+  event.target.value = "";
+}
+
+function deleteAllData() {
+  const password = prompt("Masukkan password khusus: HAPUS SEMUA");
+
+  if (password !== DELETE_PASSWORD) {
+    alert("Password salah. Data tidak dihapus.");
+    return;
+  }
+
+  const confirmation = confirm(
+    "PERINGATAN! Semua data website akan dihapus. Lanjutkan?"
+  );
+
+  if (confirmation) {
+    localStorage.removeItem(STORAGE_KEY);
+    data = clone(defaultData);
+    saveData();
+    renderAll();
+    fillAdminForm();
+    showToast("Semua data dikembalikan ke data awal");
+  }
+}
+
+async function shareWebsite() {
+  const shareData = {
+    title: data.identity.name,
+    text: data.identity.slogan + "\n" + data.identity.address,
+    url: location.href
+  };
+
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+      showToast("Website siap dibagikan");
+    } else {
+      await navigator.clipboard.writeText(location.href);
+      showToast("Alamat website disalin");
+    }
+  } catch (error) {
+    showToast("Pembagian dibatalkan");
+  }
+}
+
+function printReport() {
+  const totals = calculateCash();
+  const period = prompt("Periode laporan, contoh: Januari - Desember 2026", "Januari - Desember 2026");
+  if (period === null) return;
+
+  const rows = data.transactions.map(t => `
+    <tr>
+      <td>${esc(t.date)}</td>
+      <td>${esc(t.name)}</td>
+      <td>${esc(t.note)}</td>
+      <td>${t.type === "in" ? rupiah(t.amount) : "-"}</td>
+      <td>${t.type === "out" ? rupiah(t.amount) : "-"}</td>
+    </tr>
+  `).join("");
+
+  const report = `
+  <!DOCTYPE html>
+  <html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <title>Laporan Kas Jemaat Manggi</title>
+    <style>
+      body { font-family: Arial; padding: 28px; color:#111; }
+      h1, h2 { text-align:center; margin:5px; }
+      .center { text-align:center; }
+      hr { border:0; border-top:2px solid #111; margin:18px 0; }
+      table { width:100%; border-collapse:collapse; margin-top:20px; }
+      th,td { border:1px solid #777; padding:7px; font-size:12px; }
+      th { background:#eee; }
+      .summary { margin-top:20px; line-height:1.8; }
+      .sign { display:flex; justify-content:space-around; margin-top:80px; text-align:center; }
+      @media print { body { padding:10px; } }
+    </style>
+  </head>
+  <body>
+    <h1>${esc(data.identity.name)}</h1>
+    <h2>${esc(data.identity.address)}</h2>
+    <hr>
+    <h2>LAPORAN KAS JEMAAT</h2>
+    <p class="center">Periode: ${esc(period)}</p>
+
+    <div class="summary">
+      <b>Total Uang Masuk:</b> ${rupiah(totals.incoming)}<br>
+      <b>Total Uang Keluar:</b> ${rupiah(totals.outgoing)}<br>
+      <b>Sisa Kas:</b> ${rupiah(totals.balance)}
+    </div>
+
+    <h3>Riwayat Kas</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Tanggal</th>
+          <th>Nama</th>
+          <th>Keterangan</th>
+          <th>Masuk</th>
+          <th>Keluar</th>
+        </tr>
+      </thead>
+      <tbody>${rows || "<tr><td colspan='5'>Belum ada transaksi</td></tr>"}</tbody>
+    </table>
+
+    <p style="margin-top:45px">Mamasa, __________________ 2026</p>
+
+    <div class="sign">
+      <div>Mengetahui,<br><br><br><br><b>Pendeta / Ketua</b></div>
+      <div>Bendahara<br><br><br><br><b>__________________</b></div>
+    </div>
+  </body>
+  </html>
+  `;
+
+  const printWindow = window.open("", "_blank");
+  if (!printWindow) {
+    showToast("Izinkan popup untuk membuat PDF");
+    return;
+  }
+
+  printWindow.document.write(report);
+  printWindow.document.close();
+  printWindow.focus();
+
+  setTimeout(() => {
+    printWindow.print();
+  }, 500);
+}
+
+renderAll();
+</script>
+</body>
+</html>
